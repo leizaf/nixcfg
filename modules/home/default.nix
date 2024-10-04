@@ -2,6 +2,7 @@
 let
   packages = import ./packages.nix;
   helix = import ./helix.nix;
+  vscode = import ./vscode.nix;
 in
 {
   fonts.fontconfig.enable = true;
@@ -11,5 +12,6 @@ in
   imports = [
     packages
     helix
+    vscode
   ];
 }
