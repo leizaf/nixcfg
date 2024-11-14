@@ -1,17 +1,9 @@
 { pkgs, ... }:
-let
-  packages = import ./packages.nix;
-  helix = import ./helix.nix;
-  vscode = import ./vscode.nix;
-in
-{
+let helix = import ./helix.nix;
+in {
   fonts.fontconfig.enable = true;
 
-  home.packages = [ (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; }) ];
+  home.packages = [ (pkgs.nerdfonts.override { fonts = [ "GeistMono" ]; }) ];
 
-  imports = [
-    packages
-    helix
-    vscode
-  ];
+  imports = [ helix ];
 }
