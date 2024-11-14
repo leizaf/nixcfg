@@ -1,0 +1,20 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+  [┏━━━━](bold yellow) $directory
+  [┃](bold yellow)
+  [┗━━►](bold yellow) $status
+"""
+
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[](bold red)"
+
+[os.symbols]
+NixOS = " "
+
+[rust]
+symbol = "󱘗 "
+
+[zig]
+symbol = " "
