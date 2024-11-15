@@ -12,4 +12,8 @@
   };
   xdg.configFile."starship.toml".source = ./starship.toml;
 
+  programs.zellij = {
+    enable = true;
+    enableFishIntegration = true;
+  };
 }
