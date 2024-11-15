@@ -1,9 +1,17 @@
-{ pkgs, username, home-manager, ... }: {
+{
+  pkgs,
+  username,
+  home-manager,
+  ...
+}:
+{
   imports = [ home-manager.nixosModules.home-manager ];
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
-    extraSpecialArgs = { inherit username; };
+    extraSpecialArgs = {
+      inherit username;
+    };
     users.${username} = {
       imports = [ ./../home ];
       home.username = "${username}";
@@ -16,7 +24,10 @@
   programs.fish.enable = true;
   users.users."${username}" = {
     uid = 502;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ];
     isSystemUser = true;
     group = "users";
     createHome = true;

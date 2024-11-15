@@ -1,9 +1,17 @@
-{ username, ... }: {
+{ username, ... }:
+{
   nixpkgs.config.allowUnfree = true;
 
   nix.settings = {
-    trusted-users = [ "root" username ];
-    experimental-features = [ "fetch-closure" "flakes" "nix-command" ];
+    trusted-users = [
+      "root"
+      username
+    ];
+    experimental-features = [
+      "fetch-closure"
+      "flakes"
+      "nix-command"
+    ];
     substituters = [
       "https://cache.nixos.org"
       "https://nix-community.cachix.org"

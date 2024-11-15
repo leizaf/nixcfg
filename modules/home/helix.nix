@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.helix = {
     enable = true;
     languages = {
@@ -35,7 +36,10 @@
         display-inlay-hints = true;
       };
       keys.normal = {
-        "esc" = [ "collapse_selection" "keep_primary_selection" ];
+        "esc" = [
+          "collapse_selection"
+          "keep_primary_selection"
+        ];
         "S-h" = ":buffer-previous";
         "S-l" = ":buffer-next";
         "}" = "goto_next_paragraph";
@@ -45,13 +49,18 @@
     themes = {
       mytheme = {
         inherits = "horizon-dark";
-        comment = { modifiers = [ "dim" ]; };
+        comment = {
+          modifiers = [ "dim" ];
+        };
         diagnostic.error.underline = {
           style = "curl";
           color = "red";
         };
       };
     };
-    extraPackages = with pkgs; [ nixd nixfmt-rfc-style ];
+    extraPackages = with pkgs; [
+      nixd
+      nixfmt-rfc-style
+    ];
   };
 }

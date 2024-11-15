@@ -1,5 +1,9 @@
-{ config, ... }: {
-  imports = [ ./hardware-configuration.nix ./../../modules/core ];
+{ config, ... }:
+{
+  imports = [
+    ./hardware-configuration.nix
+    ./../../modules/core
+  ];
   system.stateVersion = "24.05";
 
   boot.loader.systemd-boot.enable = true;
@@ -45,7 +49,9 @@
   # Nvidia Start
   hardware.opengl.enable = true;
 
-  services.xserver = { videoDrivers = [ "nvidia" ]; };
+  services.xserver = {
+    videoDrivers = [ "nvidia" ];
+  };
 
   hardware.nvidia = {
     modesetting.enable = true;

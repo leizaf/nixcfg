@@ -51,7 +51,8 @@
   systemd.services."systemd-hostnamed".serviceConfig.WatchdogSec = 0;
   systemd.services."systemd-homed".serviceConfig.WatchdogSec = 0;
   systemd.services."systemd-networkd".serviceConfig.WatchdogSec =
-    lib.mkIf config.systemd.network.enable 0;
+    lib.mkIf config.systemd.network.enable
+      0;
 
   # ssh config
   programs.ssh.extraConfig = ''
@@ -59,5 +60,8 @@
   '';
 
   # indicate builder support for emulated architectures
-  nix.settings.extra-platforms = [ "x86_64-linux" "i686-linux" ];
+  nix.settings.extra-platforms = [
+    "x86_64-linux"
+    "i686-linux"
+  ];
 }

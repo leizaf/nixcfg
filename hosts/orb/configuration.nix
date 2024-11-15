@@ -2,7 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, username, modulesPath, ... }:
+{
+  config,
+  pkgs,
+  username,
+  modulesPath,
+  ...
+}:
 
 {
   imports = [
@@ -40,50 +46,52 @@
   };
 
   # Extra certificates from OrbStack.
-  security.pki.certificates = [''
-          -----BEGIN CERTIFICATE-----
-    MIIDuzCCAqOgAwIBAgIEDWtY8TANBgkqhkiG9w0BAQsFADBAMT4wPAYDVQQDEzVB
-    bmR1cmlsIEluZHVzdHJpZXMgSlNTIEJ1aWx0LWluIENlcnRpZmljYXRlIEF1dGhv
-    cml0eTAeFw0yMDAxMTYxNzQ1MTNaFw0zMDAxMTgxNzQ1MTNaMEAxPjA8BgNVBAMT
-    NUFuZHVyaWwgSW5kdXN0cmllcyBKU1MgQnVpbHQtaW4gQ2VydGlmaWNhdGUgQXV0
-    aG9yaXR5MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAklZUJgeELih+
-    jR6whf/aFqqzqUYPV6aFujMISdzw7bY77B4QWqWW4Gp8BFn4wNX+7F0Qu3h5cK8R
-    MziIjWCZ0VUEvvbGkbtuIWltUX0Q2/+a/dzmnVhWJL0PYec4Qc8QpDuxjr1dqWu0
-    oXA7JBsTmEkTIYZ8Hpm3ifM/PAJpSEi9LTr5V93qxGZBaV0CYqSJEZkwY+0Ubhnw
-    oPFHJu9HH1uUMjKt0GxrvuLLbz8ICDLgwyZkv8Nr8T6C8ffX6uliKGy5BfLCjP2b
-    /55M0PT9fQeEukZFnG6PGZIXmCjXKenHzDMW+dddwvpyhyTW/XYgGN7fxpcl4Ock
-    yc3wTVLI8QIDAQABo4G8MIG5MB0GA1UdDgQWBBQ9p4rXJSn0lVH7XrO1z6vdfgSM
-    SjATBgNVHSUEDDAKBggrBgEFBQcDATAOBgNVHQ8BAf8EBAMCAaYwDwYDVR0TAQH/
-    BAUwAwEB/zBBBgNVHR8EOjA4MDagNKAyhjBodHRwczovL2FuZHVyaWwuamFtZmNs
-    b3VkLmNvbS8vQ0EvSkFNRkNSTFNlcnZsZXQwHwYDVR0jBBgwFoAUPaeK1yUp9JVR
-    +16ztc+r3X4EjEowDQYJKoZIhvcNAQELBQADggEBAELLE2d2fHQv0ReekxwPiZFU
-    t83fjYxaxcs7vaVyAw7C2VxAcmqN/ml4juXtUpM3gXQa9dlYmztU+c8+qEKk7XjJ
-    lVmhthtgly2XnhNSxOSuIK7BLdFtCgKb9XAwc995UoMXTd6oqja7AlkiRVYMmrkc
-    Kd0jxQ2CZImIqype+7hc2Oe0ps/SXRJ48/yPl4TdqhVuFbxxVqsr7vtRAAMaXoTF
-    YghW2mgx/TbnheXQ0vzSGXNP82TafYdngozEa5QKQLWNUVbb9WnaRHvbPDlVxNVC
-    vIqey5KKsDpH/9cUgDVQaBws66H64AFDOEkYJj8Oykeaw9Tv9nhSk/IVz7Qq6oE=
-    -----END CERTIFICATE-----
+  security.pki.certificates = [
+    ''
+            -----BEGIN CERTIFICATE-----
+      MIIDuzCCAqOgAwIBAgIEDWtY8TANBgkqhkiG9w0BAQsFADBAMT4wPAYDVQQDEzVB
+      bmR1cmlsIEluZHVzdHJpZXMgSlNTIEJ1aWx0LWluIENlcnRpZmljYXRlIEF1dGhv
+      cml0eTAeFw0yMDAxMTYxNzQ1MTNaFw0zMDAxMTgxNzQ1MTNaMEAxPjA8BgNVBAMT
+      NUFuZHVyaWwgSW5kdXN0cmllcyBKU1MgQnVpbHQtaW4gQ2VydGlmaWNhdGUgQXV0
+      aG9yaXR5MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAklZUJgeELih+
+      jR6whf/aFqqzqUYPV6aFujMISdzw7bY77B4QWqWW4Gp8BFn4wNX+7F0Qu3h5cK8R
+      MziIjWCZ0VUEvvbGkbtuIWltUX0Q2/+a/dzmnVhWJL0PYec4Qc8QpDuxjr1dqWu0
+      oXA7JBsTmEkTIYZ8Hpm3ifM/PAJpSEi9LTr5V93qxGZBaV0CYqSJEZkwY+0Ubhnw
+      oPFHJu9HH1uUMjKt0GxrvuLLbz8ICDLgwyZkv8Nr8T6C8ffX6uliKGy5BfLCjP2b
+      /55M0PT9fQeEukZFnG6PGZIXmCjXKenHzDMW+dddwvpyhyTW/XYgGN7fxpcl4Ock
+      yc3wTVLI8QIDAQABo4G8MIG5MB0GA1UdDgQWBBQ9p4rXJSn0lVH7XrO1z6vdfgSM
+      SjATBgNVHSUEDDAKBggrBgEFBQcDATAOBgNVHQ8BAf8EBAMCAaYwDwYDVR0TAQH/
+      BAUwAwEB/zBBBgNVHR8EOjA4MDagNKAyhjBodHRwczovL2FuZHVyaWwuamFtZmNs
+      b3VkLmNvbS8vQ0EvSkFNRkNSTFNlcnZsZXQwHwYDVR0jBBgwFoAUPaeK1yUp9JVR
+      +16ztc+r3X4EjEowDQYJKoZIhvcNAQELBQADggEBAELLE2d2fHQv0ReekxwPiZFU
+      t83fjYxaxcs7vaVyAw7C2VxAcmqN/ml4juXtUpM3gXQa9dlYmztU+c8+qEKk7XjJ
+      lVmhthtgly2XnhNSxOSuIK7BLdFtCgKb9XAwc995UoMXTd6oqja7AlkiRVYMmrkc
+      Kd0jxQ2CZImIqype+7hc2Oe0ps/SXRJ48/yPl4TdqhVuFbxxVqsr7vtRAAMaXoTF
+      YghW2mgx/TbnheXQ0vzSGXNP82TafYdngozEa5QKQLWNUVbb9WnaRHvbPDlVxNVC
+      vIqey5KKsDpH/9cUgDVQaBws66H64AFDOEkYJj8Oykeaw9Tv9nhSk/IVz7Qq6oE=
+      -----END CERTIFICATE-----
 
-    -----BEGIN CERTIFICATE-----
-    MIIC6zCCAkygAwIBAgIUI7b68p0pPrCBoW4ptlyvVcPItscwCgYIKoZIzj0EAwQw
-    gY0xCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1T
-    YW4gRnJhbmNpc2NvMRgwFgYDVQQKEw9DbG91ZGZsYXJlLCBJbmMxNzA1BgNVBAMT
-    LkNsb3VkZmxhcmUgZm9yIFRlYW1zIEVDQyBDZXJ0aWZpY2F0ZSBBdXRob3JpdHkw
-    HhcNMjAwMjA0MTYwNTAwWhcNMjUwMjAyMTYwNTAwWjCBjTELMAkGA1UEBhMCVVMx
-    EzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBGcmFuY2lzY28xGDAW
-    BgNVBAoTD0Nsb3VkZmxhcmUsIEluYzE3MDUGA1UEAxMuQ2xvdWRmbGFyZSBmb3Ig
-    VGVhbXMgRUNDIENlcnRpZmljYXRlIEF1dGhvcml0eTCBmzAQBgcqhkjOPQIBBgUr
-    gQQAIwOBhgAEAVdXsX8tpA9NAQeEQalvUIcVaFNDvGsR69ysZxOraRWNGHLfq1mi
-    P6o3wtmtx/C2OXG01Cw7UFJbKl5MEDxnT2KoAdFSynSJOF2NDoe5LoZHbUW+yR3X
-    FDl+MF6JzZ590VLGo6dPBf06UsXbH7PvHH2XKtFt8bBXVNMa5a21RdmpD0Pho0Uw
-    QzAOBgNVHQ8BAf8EBAMCAQYwEgYDVR0TAQH/BAgwBgEB/wIBAjAdBgNVHQ4EFgQU
-    YBcQng1AEMMNteuRDAMG0/vgFe0wCgYIKoZIzj0EAwQDgYwAMIGIAkIBQU5OTA2h
-    YqmFk8paan5ezHVLcmcucsfYw4L/wmeEjCkczRmCVNm6L86LjhWU0v0wER0e+lHO
-    3efvjbsu8gIGSagCQgEBnyYMP9gwg8l96QnQ1khFA1ljFlnqc2XgJHDSaAJC0gdz
-    +NV3JMeWaD2Rb32jc9r6/a7xY0u0ByqxBQ1OQ0dt7A==
-    -----END CERTIFICATE-----
+      -----BEGIN CERTIFICATE-----
+      MIIC6zCCAkygAwIBAgIUI7b68p0pPrCBoW4ptlyvVcPItscwCgYIKoZIzj0EAwQw
+      gY0xCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1T
+      YW4gRnJhbmNpc2NvMRgwFgYDVQQKEw9DbG91ZGZsYXJlLCBJbmMxNzA1BgNVBAMT
+      LkNsb3VkZmxhcmUgZm9yIFRlYW1zIEVDQyBDZXJ0aWZpY2F0ZSBBdXRob3JpdHkw
+      HhcNMjAwMjA0MTYwNTAwWhcNMjUwMjAyMTYwNTAwWjCBjTELMAkGA1UEBhMCVVMx
+      EzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBGcmFuY2lzY28xGDAW
+      BgNVBAoTD0Nsb3VkZmxhcmUsIEluYzE3MDUGA1UEAxMuQ2xvdWRmbGFyZSBmb3Ig
+      VGVhbXMgRUNDIENlcnRpZmljYXRlIEF1dGhvcml0eTCBmzAQBgcqhkjOPQIBBgUr
+      gQQAIwOBhgAEAVdXsX8tpA9NAQeEQalvUIcVaFNDvGsR69ysZxOraRWNGHLfq1mi
+      P6o3wtmtx/C2OXG01Cw7UFJbKl5MEDxnT2KoAdFSynSJOF2NDoe5LoZHbUW+yR3X
+      FDl+MF6JzZ590VLGo6dPBf06UsXbH7PvHH2XKtFt8bBXVNMa5a21RdmpD0Pho0Uw
+      QzAOBgNVHQ8BAf8EBAMCAQYwEgYDVR0TAQH/BAgwBgEB/wIBAjAdBgNVHQ4EFgQU
+      YBcQng1AEMMNteuRDAMG0/vgFe0wCgYIKoZIzj0EAwQDgYwAMIGIAkIBQU5OTA2h
+      YqmFk8paan5ezHVLcmcucsfYw4L/wmeEjCkczRmCVNm6L86LjhWU0v0wER0e+lHO
+      3efvjbsu8gIGSagCQgEBnyYMP9gwg8l96QnQ1khFA1ljFlnqc2XgJHDSaAJC0gdz
+      +NV3JMeWaD2Rb32jc9r6/a7xY0u0ByqxBQ1OQ0dt7A==
+      -----END CERTIFICATE-----
 
-  ''];
+    ''
+  ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

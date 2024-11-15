@@ -20,40 +20,57 @@
     };
   };
 
-  outputs = { self, nixpkgs, flake-utils, nixos-cosmic, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+      nixos-cosmic,
+      ...
+    }@inputs:
     let
       username = "lfu";
-      overlays = { nixpkgs.overlays = [ inputs.helix.overlays.default ]; };
-    in {
+      overlays = {
+        nixpkgs.overlays = [ inputs.helix.overlays.default ];
+      };
+    in
+    {
       nixosModules = {
-        desktop = ./hosts/desktop;
-        orb = ./hosts/orb;
-        common = ./common.nix;
         core = ./modules/core;
+        orb = ./hosts/orb;
       };
 
       nixosConfigurations = {
-        desktop = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules =
-            [ overlays ./hosts/desktop nixos-cosmic.nixosModules.default ];
-          specialArgs = {
-            host = "desktop";
-            inherit self inputs username;
-          };
-        };
-
         orb = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
-          modules = [ overlays ./common.nix ./hosts/orb ];
+          modules =
+            [ overlays ]
+            ++ (with self.nixosModules; [
+              core
+              orb
+            ]);
           specialArgs = {
             host = "orb";
-            inherit self inputs username;
+            inherit username;
+            inherit (inputs) home-manager;
           };
         };
       };
-
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
-      formatter.aarch64-linux = nixpkgs.legacyPackages.aarch64-linux.nixfmt;
-    };
+    }
+    // flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = import nixpkgs { inherit system; };
+      in
+      {
+        checks = {
+          user-exists = pkgs.callPackage ./checks/user-exists.nix {
+            inherit username;
+            inherit (self) nixosConfigurations;
+          };
+          fmt = pkgs.callPackage ./checks/fmt.nix { };
+        };
+        formatter = pkgs.nixfmt-rfc-style;
+      }
+    );
 }

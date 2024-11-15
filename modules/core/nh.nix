@@ -1,4 +1,10 @@
-{ config, pkgs, username, ... }: {
+{
+  config,
+  pkgs,
+  username,
+  ...
+}:
+{
   programs.nh = {
     enable = true;
     clean.enable = true;
