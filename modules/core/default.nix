@@ -1,5 +1,8 @@
 { pkgs, ... }: {
-  imports = [ ./user.nix ./nh.nix ];
+  imports = [
+    ./user.nix 
+    ./nh.nix
+  ];
 
   environment.systemPackages = with pkgs; [ git lazygit devenv ];
 
