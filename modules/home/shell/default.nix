@@ -1,4 +1,4 @@
-{pkgs, username, ...}: {
+{ pkgs, username, ... }: {
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
@@ -8,7 +8,7 @@
 
   programs.starship = {
     enable = true;
-		enableFishIntegration = true;
+    enableFishIntegration = true;
   };
   xdg.configFile."starship.toml".source = ./starship.toml;
 

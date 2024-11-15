@@ -29,6 +29,7 @@
         desktop = ./hosts/desktop;
         orb = ./hosts/orb;
         common = ./common.nix;
+        core = ./modules/core;
       };
 
       nixosConfigurations = {
