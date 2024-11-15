@@ -1,8 +1,1 @@
-{ ... }:
-
-{
-  imports = [
-     ../../modules/core
-    /etc/nixos/configuration.nix
-  ];
-}
+{ ... }: { imports = [ ./configuration.nix ]; }
