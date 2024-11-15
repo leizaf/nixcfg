@@ -1,17 +1,52 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = """
-  [┏━━━━](bold yellow) $directory
-  [┃](bold yellow)
-  [┗━━►](bold yellow) $status
+format = """ [┏━━━━](fg:#c6974d)\
+$os\
+$username\
+$directory\
+$haskell$rust$zig\
+$git_branch$git_status
+ [┃](fg:#c6974d)
+ [┗━━━](fg:#c6974d) $character
 """
+
+[username]
+show_always = true
+style_user = "fg:#0e1116 bg:#c6974d"
+style_root = "fg:#0e1116 bg:#c6974d"
+format = '[$user ]($style)'
+disabled = false
 
 [character]
 success_symbol = "[➜](bold green)"
 error_symbol = "[](bold red)"
 
+[directory]
+style = "bg:#435a54"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[os]
+style = "fg:#0e1116 bg:#c6974d"
+disabled = false
+
 [os.symbols]
-NixOS = " "
+NixOS = "  "
+
+[git_branch]
+symbol = ""
+style = "bg:#394260"
+format = '[[ $symbol $branch ](fg:#82aaff bg:#17202b)]($style)'
+
+[git_status]
+style = "bg:#394260"
+format = '[[($all_status$ahead_behind )](fg:#82aaff bg:#17202b)]($style)'
+
+[haskell]
+symbol = ""
+style = "bg:#546e7a"
+format = '[ $symbol ]($style)'
 
 [rust]
 symbol = "󱘗 "
