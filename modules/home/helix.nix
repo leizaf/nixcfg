@@ -48,7 +48,7 @@
     };
     themes = {
       mytheme = {
-        inherits = "horizon-dark";
+        inherits = "material_deep_ocean";
         comment = {
           modifiers = [ "dim" ];
         };
