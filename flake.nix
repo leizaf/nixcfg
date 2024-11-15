@@ -25,6 +25,12 @@
       username = "lfu";
       overlays = { nixpkgs.overlays = [ inputs.helix.overlays.default ]; };
     in {
+      nixosModules = {
+        desktop = ./hosts/desktop;
+        orb = ./hosts/orb;
+        common = ./common.nix;
+      };
+
       nixosConfigurations = {
         desktop = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
