@@ -16,7 +16,7 @@
       imports = [ ./../home ];
       home.username = "${username}";
       home.homeDirectory = "/home/${username}";
-      home.stateVersion = "24.05";
+      home.stateVersion = "24.11";
       programs.home-manager.enable = true;
     };
   };
@@ -34,6 +34,9 @@
     home = "/home/${username}";
     homeMode = "700";
     shell = pkgs.fish;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF22EHMdCWj35l+BkaF7jGzhjUgZiLCAC2g5L1+DcK+3"
+    ];
   };
 
   nix.settings.allowed-users = [ "${username}" ];

@@ -9,10 +9,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixos-cosmic = {
+    #   url = "github:lilyinstarlight/nixos-cosmic";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     helix = {
       url = "github:helix-editor/helix";
@@ -25,22 +25,38 @@
       self,
       nixpkgs,
       flake-utils,
-      nixos-cosmic,
       ...
     }@inputs:
     let
       username = "lfu";
       overlays = {
-        nixpkgs.overlays = [ inputs.helix.overlays.default ];
+        # nixpkgs.overlays = [ inputs.helix.overlays.default ];
       };
     in
     {
       nixosModules = {
         core = ./modules/core;
         orb = ./hosts/orb;
+        jetson = ./hosts/jetson;
       };
 
       nixosConfigurations = {
+        agx-orin = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          modules =
+            [ overlays ]
+            ++ (with self.nixosModules; [
+              core
+              jetson
+            ]);
+          specialArgs = {
+            host = "agx-orin";
+            inherit username;
+            inherit (inputs) home-manager;
+            som = "orin-agx";
+          };
+        };
+
         orb = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
           modules =
