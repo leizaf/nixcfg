@@ -56,5 +56,7 @@ in
     passwordAuthentication = false;
   };
 
+  security.sudo.wheelNeedsPassword = false;
+
   system.stateVersion = "24.11";
 }
