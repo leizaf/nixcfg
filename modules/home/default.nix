@@ -2,7 +2,7 @@
 {
   fonts.fontconfig.enable = true;
 
-  home.packages = [ (pkgs.nerdfonts.override { fonts = [ "GeistMono" ]; }) ];
+  home.packages = [ pkgs.nerd-fonts.geist-mono ];
 
   imports = [
     ./shell
