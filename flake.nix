@@ -38,6 +38,7 @@
         core = ./modules/core;
         orb = ./hosts/orb;
         jetson = ./hosts/jetson;
+        wsl = ./hosts/wsl;
       };
 
       nixosConfigurations = {
@@ -67,6 +68,21 @@
             ]);
           specialArgs = {
             host = "orb";
+            inherit username;
+            inherit (inputs) home-manager;
+          };
+        };
+        
+        wsl = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules =
+            [ overlays ]
+            ++ (with self.nixosModules; [
+              core
+              wsl
+            ]);
+          specialArgs = {
+            host = "wsl";
             inherit username;
             inherit (inputs) home-manager;
           };
